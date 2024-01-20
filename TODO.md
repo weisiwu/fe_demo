@@ -35,3 +35,4 @@
 33. [用初中数学知识撸一个 canvas 环形进度条](https://juejin.cn/post/6844903990610624520?utm_source=gold_browser_extension)
 34. [这个鼠标跟随效果被我一晚上硬撸出来了~](https://juejin.cn/post/7124709471745474591)
 35. [模仿北京健康宝动画](https://juejin.cn/post/7127069249440481287)
+36. [一个有趣的头像 hover 效果](https://juejin.cn/post/7265157901346144291)
