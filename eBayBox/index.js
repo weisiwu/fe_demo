@@ -79,19 +79,38 @@ $(document).ready(()=> {
 
     // 导出图片
     $('#Export_Image').on('click', (evt) => {
-        html2canvas($('#layout')[0]).then(canvas => {
-            // 创建一个 Data URL
-            const dataURL = canvas.toDataURL("image/png");
+      const node = document.getElementById('layout');
 
-            // 创建一个下载链接
-            const link = document.createElement('a');
-            link.href = dataURL;
-            link.download = 'captured-image.png';
+      domtoimage
+        .toPng(node)
+        .then(function (dataUrl) {
+          const img = new Image();
+          img.src = dataUrl;
+          document.body.appendChild(img);
 
-            // 模拟点击链接
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+          // 如果你想下载图片
+          const link = document.createElement('a');
+          link.download = 'captured-image.png';
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch(function (error) {
+          console.error('截图失败', error);
         });
+
+      // html2canvas($('#layout')[0]).then(canvas => {
+      //     // 创建一个 Data URL
+      //     const dataURL = canvas.toDataURL("image/png");
+
+      //     // 创建一个下载链接
+      //     const link = document.createElement('a');
+      //     link.href = dataURL;
+      //     link.download = 'captured-image.png';
+
+      //     // 模拟点击链接
+      //     document.body.appendChild(link);
+      //     link.click();
+      //     document.body.removeChild(link);
+      // });
     });
 })
