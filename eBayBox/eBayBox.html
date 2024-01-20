@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Information Form</title>
+    <link href="./bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-file-label::after {
+            content: "Browse";
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-4">Product Information Form</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="subtitle">Subtitle</label>
+                        <input type="text" class="form-control" id="subtitle" name="subtitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Product Main Image</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="productImage" accept="image/*" name="productImage">
+                            <label class="custom-file-label" for="productImage">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="infoField1">Information Field 1</label>
+                        <input type="text" class="form-control" id="infoField1" name="infoField1">
+                    </div>
+                    <div class="form-group">
+                        <label for="infoField2">Information Field 2</label>
+                        <input type="text" class="form-control" id="infoField2" name="infoField2">
+                    </div>
+                    <div class="form-group">
+                        <label for="infoField2">Type Text</label>
+                        <input type="text" class="form-control" id="typeText" name="typeText">
+                    </div>
+                    <div class="form-group">
+                        <label for="parameter1">Parameter 1(75KG)</label>
+                        <input type="text" class="form-control" id="parameter1" name="parameter1">
+                    </div>
+                    <div class="form-group">
+                        <label for="parameter2">Parameter 2(1800KG)</label>
+                        <input type="text" class="form-control" id="parameter2" name="parameter2">
+                    </div>
+                    <div class="form-group">
+                        <label for="sideImage">Side Image</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" accept="image/*" id="sideImage" name="sideImage">
+                            <label class="custom-file-label" for="sideImage">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sideInclination">Side Inclination</label>
+                        <input type="number" class="form-control" id="sideInclination" name="sideInclination">
+                        <small class="form-text text-muted">Adjust this number to change the angle of the side image.</small>
+                    </div>
+                    <button type="button" id="Export_Image" class="btn btn-primary">Export Image</button>
+                </form>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <!-- Preview Start -->
+                <div class="preview">
+                    <h2>Preview</h2>
+                    <p>Content from the form will be displayed here for preview.</p>
+                    <!-- Dynamically generated content will go here -->
+                    <div id="img">
+                        <div style="position: relative; width: 500px; height: 500px; background-color: black; border-radius: 10px; line-height: 500px;">
+                            <img id="bk" src="./bk.jpg" width="500"/>
+                            <div id="layout" style="position: absolute;top: 0;left: 0;">
+                                <div id="TitleBox" style="position: absolute; left: 125px;top: 61px;font-size: 24px;font-weight: bold;">
+                                    <p id="Title" style="font-size: 24px;font-weight: bold;margin: 0;max-width: 267px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height: 1.2em;white-space: normal;overflow-wrap: break-word;">Title Demo</p>
+                                    <p id="Subtitle" style="font-size: 24px;font-weight: bold;color: green;height: 32px;margin: 0;max-width: 267px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;line-height: 1.2em;white-space: normal;">Subtitle Demo</p>
+                                </div>
+                                <span id="Information_Field_1" style="position: absolute;left: 125px;top: 175px;font-size: 12px;font-weight: bold;height: 22px;line-height: 22px;margin: 0;color: #fff;max-width: 191px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;white-space: normal;">Information Field 1 Demo</span>
+                                <span id="Information_Field_2" style="position: absolute;left: 125px;top: 207px;font-size: 12px;font-weight: bold;height: 22px;line-height: 22px;margin: 0;color: #fff;max-width: 191px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;white-space: normal;">Information Field 2 Demo</span>
+                                <span id="Parameter_1" style="position: absolute;left: 162px;top: 261px;font-size: 18px;font-weight: bold;height: 26px;line-height: 22px;margin: 0;max-width: 50px;overflow: hidden;">75KG</span>
+                                <span id="Parameter_2" style="position: absolute;left: 258px;top: 261px;font-size: 18px;font-weight: bold;height: 26px;line-height: 22px;margin: 0;max-width: 70px;overflow: hidden;">1800KG</span>
+                                <span id="TypeText" style="position: absolute;left: 333px;top: 271px;height: 20px;font-size: 14px;font-weight: 900;color: #4164a3;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;white-space: normal;line-height: 20px;max-width: 155px;transform: rotate(-1deg);">TypeText Demo</span>
+                                <img id="Product_Main_Image" style="position: absolute;left: 330px;top: 117px;width: 158px;max-height: 143px;transform: rotate(0deg);clip-path: polygon(0% 3%, 100% 0%, 100% 96%, 0% 100%);" src="./Product_Main_Image.jpg" />
+                                <img id="Side_Img" style="left: 11px;top: 68px;width: 92px;clip-path: polygon(00% 0%, 100% 4%, 100% 100%, 0% 94%);transform: rotate(0deg);position: absolute;" src="./side_img.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Preview End -->
+            </div>
+        </div>
+    </div>
+
+    <script src="./jquery-3.5.1.slim.min.js"></script>
+    <script src="./popper.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="./html2canvas.min.js"></script>
+    <script>
+        $('.custom-file-input').on('change', function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+    </script>
+    <script src="./index.js"></script>
+</body>
+</html>
