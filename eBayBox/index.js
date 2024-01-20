@@ -88,30 +88,10 @@ $(document).ready(()=> {
             link.href = dataURL;
             link.download = 'captured-image.png';
 
-            // const img = new Image();
-            // img.crossOrigin="anonymous"
-
             // 模拟点击链接
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         });
-
-        // const element = document.getElementById('img');
-        // const htmlContent = element.innerHTML;
-        // console.log(htmlContent)
-        // const newWindow = window.open('', '_blank');
-        // newWindow.document.write('<html><head><title>Print</title><style>');
-        // newWindow.document.write('</style></head><body >');
-        // newWindow.document.write(htmlContent); // 插入复制的 HTML
-        // newWindow.document.write('</body></html>');
-        // newWindow.document.close();
-        // newWindow.focus(); // 确保新窗口或 iframe 获得焦点
-        // newWindow.print(); // 打印内容
-        // newWindow.close(); // 关闭新窗口或 iframe
-        // window.focus(); // 确保新窗口或 iframe 获得焦点
-        // window.print(); // 打印内容
-        // window.close(); // 关闭新窗口或 iframe
-        
     });
 })
