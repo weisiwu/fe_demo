@@ -4,6 +4,7 @@
 .rect {
     position: absolute;
     z-index: 999;
+    top: -155px;
 }
 .rect_black_1 {
     position: absolute;
