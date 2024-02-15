@@ -55,7 +55,14 @@ $(document).ready(() => {
             key === 'infoField2' && $('#Information_Field_2').html(value);
             key === 'parameter1' && $('#Parameter_1').html(value);
             key === 'parameter2' && $('#Parameter_2').html(value);
-            key === 'typeText' && $('#TypeText').html(value);
+
+            key === 'SideFacadeTitle' && $('#Side_Facade_Title').html(value);
+            key === 'SideFacadeItem1' && $('#Parts_1').html(value);
+            key === 'SideFacadeItem2' && $('#Parts_2').html(value);
+            key === 'SideFacadeItem3' && $('#Parts_3').html(value);
+            key === 'SideFacadeItem4' && $('#Parts_4').html(value);
+            key === 'SideFacadeItem5' && $('#Parts_5').html(value);
+            // key === 'typeText' && $('#TypeText').html(value);
           });
         });
       });
