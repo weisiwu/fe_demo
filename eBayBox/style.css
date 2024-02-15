@@ -254,3 +254,9 @@
     transform: rotate(5deg);
     font-size: 7px;
 }
+.sideBk {
+    width: 100px;
+    top: 43px;
+    position: absolute;
+    opacity: 0.3;
+}
