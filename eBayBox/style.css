@@ -36,7 +36,7 @@
 .rect_blue_2 {
     position: absolute;
     left: -7px;
-    top: 35px;
+    top: 34px;
     width: 325px;
     /* height: 40px; */
     clip-path: polygon(0 0, 100% 0, 97.5% 100%, 0% 100%);
@@ -57,7 +57,7 @@
     top: 257px;
     width: 160px;
     height: 37px;
-    clip-path: polygon(4% 0%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(6% 0%, 100% 0%, 100% 100%, 0% 100%);
     background-color: #fff;
 }
 .preview {
