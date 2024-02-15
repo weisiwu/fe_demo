@@ -178,6 +178,7 @@ $(document).ready(() => {
   // 导出图片
   $('#Export_Image').on('click', (evt) => {
     const node = document.getElementById('layout');
+    $layout.css('top', 0);
 
     domtoimage
       .toPng(node)
@@ -192,6 +193,7 @@ $(document).ready(() => {
         link.href = dataUrl;
         link.click();
         document.body.removeChild(img);
+        $layout.css('top', (boxSize - size.height) / 2);
       })
       .catch(function (error) {
         console.error('截图失败', error);
