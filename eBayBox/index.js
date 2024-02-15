@@ -101,6 +101,42 @@ $(document).ready(() => {
     $Parameter_2.html(value);
   });
 
+  $('#sideTitle').on('input', (evt) => {
+    const $Side_Facade_Title = $('#Side_Facade_Title');
+    const value = evt.target.value;
+    $Side_Facade_Title.html(value);
+  });
+
+  $('#parts_1').on('input', (evt) => {
+    const $Parts_1 = $('#Parts_1');
+    const value = evt.target.value;
+    $Parts_1.html(value);
+  });
+
+  $('#parts_2').on('input', (evt) => {
+    const $Parts_2 = $('#Parts_2');
+    const value = evt.target.value;
+    $Parts_2.html(value);
+  });
+
+  $('#parts_3').on('input', (evt) => {
+    const $Parts_3 = $('#Parts_3');
+    const value = evt.target.value;
+    $Parts_3.html(value);
+  });
+
+  $('#parts_4').on('input', (evt) => {
+    const $Parts_4 = $('#Parts_4');
+    const value = evt.target.value;
+    $Parts_4.html(value);
+  });
+
+  $('#parts_5').on('input', (evt) => {
+    const $Parts_5 = $('#Parts_5');
+    const value = evt.target.value;
+    $Parts_5.html(value);
+  });
+
   $('#typeText').on('input', (evt) => {
     const $TypeText = $('#TypeText');
     const value = evt.target.value;
