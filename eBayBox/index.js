@@ -50,6 +50,7 @@ $(document).ready(() => {
               return;
             }
             key === 'Title' && $('#Title').html(value);
+            key === 'Title_2' && $('#Title_2').html(value);
             key === 'Subtitle' && $('#Subtitle').html(value);
             key === 'infoField1' && $('#Information_Field_1').html(value);
             key === 'infoField2' && $('#Information_Field_2').html(value);
@@ -74,6 +75,12 @@ $(document).ready(() => {
   // 文字处理区
   $('#title').on('input', (evt) => {
     const $Title = $('#Title');
+    const value = evt.target.value;
+    $Title.html(value);
+  });
+
+  $('#title2').on('input', (evt) => {
+    const $Title = $('#Title_2');
     const value = evt.target.value;
     $Title.html(value);
   });
@@ -170,6 +177,42 @@ $(document).ready(() => {
 
     reader.onload = (e) => {
       $Side_Img.attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  $('#BottomLogo1').on('input', (evt) => {
+    const $Side_Img = $('#Product_sideImage_A');
+    const file = evt.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      $Side_Img.attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  $('#BottomLogo2').on('input', (evt) => {
+    const $Side_Img = $('#Product_sideImage_B');
+    const file = evt.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      $Side_Img.attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  $('#SideImage1').on('input', (evt) => {
+    const $smallProduct = $('#small_product');
+    const file = evt.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      $smallProduct.attr('src', e.target.result);
     };
 
     reader.readAsDataURL(file);

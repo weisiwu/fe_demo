@@ -18,6 +18,10 @@
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="form-group">
+                        <label for="title2">Title 2</label>
+                        <input type="text" class="form-control" id="title2" name="title2">
+                    </div>
+                    <div class="form-group">
                         <label for="subtitle">Subtitle</label>
                         <input type="text" class="form-control" id="subtitle" name="subtitle">
                     </div>
@@ -68,6 +72,27 @@
                         <label for="parts_5">Side Facade Item 5</label>
                         <input type="text" class="form-control" id="parts_5" name="parts_5">
                     </div>
+                    <div class="form-group">
+                        <label for="BottomLogo1">Bottom Logo 1</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="BottomLogo1" accept="image/*" name="productImage">
+                            <label class="custom-file-label" for="BottomLogo1">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="BottomLogo2">Bottom Logo 2</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="BottomLogo2" accept="image/*" name="productImage">
+                            <label class="custom-file-label" for="BottomLogo2">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="SideImage1">Side Image 1</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="SideImage1" accept="image/*" name="productImage">
+                            <label class="custom-file-label" for="SideImage1">Choose file</label>
+                        </div>
+                    </div>
                     <button type="button" id="Export_Image" class="btn btn-primary">Export Image</button>
                 </form>
             </div>
@@ -86,8 +111,10 @@
                                 <div class="rect_blue_3"></div>
                             </div>
                             <img id="bk" src="./bk.jpg" width="500" />
+                            <!-- <img id="bk" src="./bk2.png" width="500" /> -->
                             <div id="TitleBox">
                                 <p id="Title">Title Demo</p>
+                                <p id="Title_2">Title Line 2</p>
                                 <div class="rect_blue_2">
                                     <p id="Subtitle">Subtitle Demo</p>
                                 </div>
@@ -106,6 +133,7 @@
                                 <img class="wb-2" src="./wb.png" />
                                 <span id="Parameter_2" >1800KG</span>
                             </p>
+                            <img id="small_product" src="./small_product.jpg" />
                             <div id="sidePart">
                                 <img class="sideBk" src="./side_bk.png" />
                                 <span id="Side_Facade_Title" >Side Facade Title</span>
@@ -131,6 +159,8 @@
                                 </p>
                             </div>
                             <img id="Product_Main_Image"  src="./Product_Main_Image.png" />
+                            <img id="Product_sideImage_A"  src="./imgA.jpg" />
+                            <img id="Product_sideImage_B"  src="./imgB.jpg" />
                         </div>
                     </div>
                 </div>
