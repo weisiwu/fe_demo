@@ -49,30 +49,6 @@
                         <input type="text" class="form-control" id="parameter2" name="parameter2">
                     </div>
                     <div class="form-group">
-                        <label for="sideTitle">Side Facade Title</label>
-                        <input type="text" class="form-control" id="sideTitle" name="sideTitle">
-                    </div>
-                    <div class="form-group">
-                        <label for="parts_1">Side Facade Item 1</label>
-                        <input type="text" class="form-control" id="parts_1" name="parts_1">
-                    </div>
-                    <div class="form-group">
-                        <label for="parts_2">Side Facade Item 2</label>
-                        <input type="text" class="form-control" id="parts_2" name="parts_2">
-                    </div>
-                    <div class="form-group">
-                        <label for="parts_3">Side Facade Item 3</label>
-                        <input type="text" class="form-control" id="parts_3" name="parts_3">
-                    </div>
-                    <div class="form-group">
-                        <label for="parts_4">Side Facade Item 4</label>
-                        <input type="text" class="form-control" id="parts_4" name="parts_4">
-                    </div>
-                    <div class="form-group">
-                        <label for="parts_5">Side Facade Item 5</label>
-                        <input type="text" class="form-control" id="parts_5" name="parts_5">
-                    </div>
-                    <div class="form-group">
                         <label for="BottomLogo1">Bottom Logo 1</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="BottomLogo1" accept="image/*" name="productImage">
@@ -87,7 +63,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="SideImage1">Side Image 1</label>
+                        <label for="SideImage1">Small Product Image</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="SideImage1" accept="image/*" name="productImage">
                             <label class="custom-file-label" for="SideImage1">Choose file</label>
@@ -102,65 +78,33 @@
                     <h2>Preview</h2>
                     <p>Content from the form will be displayed here for preview.</p>
                     <!-- Dynamically generated content will go here -->
-                    <div style="position: relative; width: 500px; height: 500px; background-color: black; border-radius: 10px; line-height: 500px;">
+                    <div style="position: relative; width: 600px; height: 600px; background-color: black; border-radius: 10px; line-height: 600px;">
                         <div id="layout">
-                            <div class="rect">
-                                <div class="rect_blue_1"></div>
-                                <div class="rect_black_2"></div>
-                                <div class="rect_white_1" ></div>
-                                <div class="rect_blue_3"></div>
-                            </div>
-                            <img id="bk" src="./bk.jpg" width="500" />
-                            <!-- <img id="bk" src="./bk2.png" width="500" /> -->
+                            <img id="bk" src="./bk.png" width="600" />
+                            <!-- <img id="bk" src="./bk2.png" width="600" /> -->
                             <div id="TitleBox">
-                                <p id="Title">Title Demo</p>
-                                <p id="Title_2">Title Line 2</p>
-                                <div class="rect_blue_2">
-                                    <p id="Subtitle">Subtitle Demo</p>
-                                </div>
+                                <p id="Title">Fiat Ducato-250 L4/XL</p>
+                                <p id="Title_2">Bus/Kasten Lange Von 6363mm</p>
+                                <p id="Subtitle">Ausschnitt nicht sichtbar</p>
                             </div>
                             <div>
-                                <span id="Information_Field_1">Information Field Line 1</span>
-                                <span id="Information_Field_2">Information Field Line 2</span>
+                                <span id="Information_Field_1">Baujahr: 06.2003-06.2008</span>
+                                <span id="Information_Field_2">KIT = Kupplung inkl.E-Satz</span>
                             </div>
                             <p style="position: relative;">
                                 <img class="hand_svg_grab" src="./icons/cursor-grab.svg" />
-                                <img class="wb-1" src="./wb.png" />
-                                <span id="Parameter_1" >75KG</span>
+                                <img class="wb-1" src="./wb_down.png" />
+                                <span id="Parameter_1" >1800KG</span>
                             </p>
                             <p>
                                 <img class="hand_svg_grabbed" src="./icons/cursor-grabbed.svg" />
-                                <img class="wb-2" src="./wb.png" />
-                                <span id="Parameter_2" >1800KG</span>
+                                <img class="wb-2" src="./wb_left.png" />
+                                <span id="Parameter_2" >100KG</span>
                             </p>
-                            <img id="small_product" src="./small_product.jpg" />
-                            <div id="sidePart">
-                                <img class="sideBk" src="./side_bk.png" />
-                                <span id="Side_Facade_Title" >Side Facade Title</span>
-                                <p>
-                                    <img class="sidePartIcon" src="./icons/shipping.png" />
-                                    <span id="Parts_1" >SCHNELLER VERSAND (EXPRESS MÖGLICH)</span>
-                                </p>
-                                <p>
-                                    <img class="sidePartIcon" src="./icons/warranty.png" />
-                                    <span id="Parts_2" >ARTIKEL WIE BESCHRIEBEN</span>
-                                </p>
-                                <p>
-                                    <img class="sidePartIcon" src="./icons/money-back.png" />
-                                    <span id="Parts_3" >30 TAGE RÜCKGABERECHT</span>
-                                </p>
-                                <p>
-                                    <img class="sidePartIcon" src="./icons/telephone.png" />
-                                    <span id="Parts_4" >TELEFON-SUPPORT (WHATSAPP MÖGLICH)</span>
-                                </p>
-                                <p>
-                                    <img class="sidePartIcon" src="./icons/payment.png" />
-                                    <span id="Parts_5" >PAYPAL UND ÜBERWEISUNG</span>
-                                </p>
-                            </div>
+                            <img id="small_product" src="./small_product.png" />
                             <img id="Product_Main_Image"  src="./Product_Main_Image.png" />
-                            <img id="Product_sideImage_A"  src="./imgA.jpg" />
-                            <img id="Product_sideImage_B"  src="./imgB.jpg" />
+                            <img id="Product_sideImage_A"  src="./imgA.png" />
+                            <img id="Product_sideImage_B"  src="./imgB.png" />
                         </div>
                     </div>
                 </div>

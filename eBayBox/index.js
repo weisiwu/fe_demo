@@ -56,14 +56,6 @@ $(document).ready(() => {
             key === 'infoField2' && $('#Information_Field_2').html(value);
             key === 'parameter1' && $('#Parameter_1').html(value);
             key === 'parameter2' && $('#Parameter_2').html(value);
-
-            key === 'SideFacadeTitle' && $('#Side_Facade_Title').html(value);
-            key === 'SideFacadeItem1' && $('#Parts_1').html(value);
-            key === 'SideFacadeItem2' && $('#Parts_2').html(value);
-            key === 'SideFacadeItem3' && $('#Parts_3').html(value);
-            key === 'SideFacadeItem4' && $('#Parts_4').html(value);
-            key === 'SideFacadeItem5' && $('#Parts_5').html(value);
-            // key === 'typeText' && $('#TypeText').html(value);
           });
         });
       });
@@ -113,42 +105,6 @@ $(document).ready(() => {
     const $Parameter_2 = $('#Parameter_2');
     const value = evt.target.value;
     $Parameter_2.html(value);
-  });
-
-  $('#sideTitle').on('input', (evt) => {
-    const $Side_Facade_Title = $('#Side_Facade_Title');
-    const value = evt.target.value;
-    $Side_Facade_Title.html(value);
-  });
-
-  $('#parts_1').on('input', (evt) => {
-    const $Parts_1 = $('#Parts_1');
-    const value = evt.target.value;
-    $Parts_1.html(value);
-  });
-
-  $('#parts_2').on('input', (evt) => {
-    const $Parts_2 = $('#Parts_2');
-    const value = evt.target.value;
-    $Parts_2.html(value);
-  });
-
-  $('#parts_3').on('input', (evt) => {
-    const $Parts_3 = $('#Parts_3');
-    const value = evt.target.value;
-    $Parts_3.html(value);
-  });
-
-  $('#parts_4').on('input', (evt) => {
-    const $Parts_4 = $('#Parts_4');
-    const value = evt.target.value;
-    $Parts_4.html(value);
-  });
-
-  $('#parts_5').on('input', (evt) => {
-    const $Parts_5 = $('#Parts_5');
-    const value = evt.target.value;
-    $Parts_5.html(value);
   });
 
   $('#typeText').on('input', (evt) => {
