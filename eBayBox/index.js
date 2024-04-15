@@ -115,7 +115,7 @@ $(document).ready(() => {
             $('#Product_sideImage_A').attr('src', row[9]);
             $('#Product_sideImage_B').attr('src', row[10]);
             // 给5s加载图片
-            setTimeout(() => resolve(exportImage(index)), 500);
+            setTimeout(() => resolve(exportImage(index)), 5000);
           });
         });
       }, Promise.resolve());
