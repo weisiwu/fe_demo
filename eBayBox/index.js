@@ -20,6 +20,7 @@ $(document).ready(() => {
   const $img = $('#bk');
   const $layout = $('#layout');
   const $excelInput = $('#input-excel');
+  const $csvInput = $('#input-csv');
   const size = { width: $img.width(), height: $img.height() };
   $layout.css('width', size.width);
   $layout.css('height', size.height);
@@ -62,6 +63,65 @@ $(document).ready(() => {
     };
 
     reader.readAsArrayBuffer(file);
+  });
+
+  const exportImage = (name = 0) => {
+    const node = document.getElementById('layout');
+    $layout.css('top', 0);
+
+    console.log('wswTest: ', 'i开始到吃屎搜索是');
+    return domtoimage
+      .toPng(node)
+      .then(function (dataUrl) {
+        const img = new Image();
+        img.src = dataUrl;
+        document.body.appendChild(img);
+
+        // 如果你想下载图片
+        const link = document.createElement('a');
+        link.download = `captured-image-${name}.png`;
+        link.href = dataUrl;
+        link.click();
+        document.body.removeChild(img);
+        $layout.css('top', (boxSize - size.height) / 2);
+      })
+      .catch(function (error) {
+        console.error('截图失败', error);
+      });
+  };
+
+  $csvInput.on('change', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      const content = event.target.result;
+      const lines = content.split('\n').map((line) => line.trim());
+      const segments = lines.map((line) => line.split('\t'));
+      const [columns, ...rows] = segments;
+
+      rows.reduce((sum, row, index) => {
+        return sum.then(() => {
+          return new Promise((resolve, reject) => {
+            $('#Title').html(row[0]);
+            $('#Title_2').html(row[1]);
+            $('#Subtitle').html(row[2]);
+            $('#Parameter_2').html(row[3]);
+            $('#Parameter_1').html(row[4]);
+            $('#small_product').attr('src', row[5]);
+            $('#Product_Main_Image').attr('src', row[6]);
+            $('#Information_Field_1').html(row[7]);
+            $('#Information_Field_2').html(row[8]);
+            $('#Product_sideImage_A').attr('src', row[9]);
+            $('#Product_sideImage_B').attr('src', row[10]);
+            // 给5s加载图片
+            setTimeout(() => resolve(exportImage(index)), 500);
+          });
+        });
+      }, Promise.resolve());
+    };
+
+    reader.readAsText(file);
   });
 
   // 文字处理区
