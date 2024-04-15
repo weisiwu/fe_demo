@@ -69,7 +69,6 @@ $(document).ready(() => {
     const node = document.getElementById('layout');
     $layout.css('top', 0);
 
-    console.log('wswTest: ', 'i开始到吃屎搜索是');
     return domtoimage
       .toPng(node)
       .then(function (dataUrl) {
