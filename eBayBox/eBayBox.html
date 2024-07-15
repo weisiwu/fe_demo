@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Product Information Form</title>
     <link href="./bootstrap.min.css" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
@@ -10,9 +11,8 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 class="mb-4">Product Information Form</h2>
-                <!-- <input type="file" id="input-excel" /> -->
                 <input type="file" id="input-csv" />
-                <a href="https://raw.githubusercontent.com/weisiwu/fe_demo/main/eBayBox/demo.xlsx">download Demo excel</a>
+                <a href="https://raw.githubusercontent.com/weisiwu/fe_demo/main/eBayBox/sample.csv">Download Sample Csv File</a>
                 <form>
                     <div class="form-group">
                         <label for="title">Title</label>
@@ -119,6 +119,7 @@
     <script src="./dom-to-image.min.js"></script>
     <script src="./xlsx.full.min.js"></script>
     <script src="./exceljs.min.js"></script>
+    <script src="./jszip.min.js"></script>
     <script>
         $('.custom-file-input').on('change', function() {
             const fileName = $(this).val().split('\\').pop();

@@ -183,11 +183,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    /* -webkit-line-clamp: 1; */
-    /* -webkit-box-orient: vertical; */
     white-space: nowrap;
     padding: 0px 3px 0px 3px;
-    /* background: red; */
     border-radius: 5px;
     width: 160px;
     transform: rotate(-1deg);
@@ -199,7 +196,7 @@
     left: 282px;
     top: 255px;
     width: 92px;
-    /* max-height: 52px; */
+    max-height: 52px;
     transform: rotate(0deg);
     clip-path: polygon(0% 3%, 100% 0%, 100% 96%, 0% 100%);
     z-index: 999999999999;

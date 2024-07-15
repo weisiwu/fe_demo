@@ -6,7 +6,7 @@ function uint8ArrayToImageBase64(uint8Array, mimeType, dom) {
 
   const reader = new FileReader();
 
-  reader.onloadend = function () {
+  reader.onloadend = () => {
     const base64String = reader.result; // 包含 MIME 类型的 Base64 字符串
     dom.attr('src', base64String);
   };
@@ -19,45 +19,91 @@ $(document).ready(() => {
   // 以左上方为原点
   const $img = $('#bk');
   const $layout = $('#layout');
-  const $excelInput = $('#input-excel');
   const $csvInput = $('#input-csv');
   const size = { width: $img.width(), height: $img.height() };
   $layout.css('width', size.width);
   $layout.css('height', size.height);
   $layout.css('top', (boxSize - size.height) / 2);
 
+  // 读取每行数据，并生成截图
+  async function readLine(row, images, currentIndex) {
+    const values = row.values?.filter?.((item) => item) || [];
+
+    if (!values?.length) {
+      return;
+    }
+
+    const [
+      Title,
+      Title_2_1 = '',
+      Title_2_2 = '',
+      Subtitle,
+      parameter1,
+      parameter2,
+      Img1,
+      Img2,
+      infoField1,
+      infoField2,
+      Img3,
+      Img4,
+    ] = values;
+    const Title_2 = `${Title_2_1} ${Title_2_2}`;
+
+    Title && $('#Title').html(Title);
+    Title_2 && $('#Title_2').html(Title_2);
+    Subtitle && $('#Subtitle').html(Subtitle);
+    infoField1 && $('#Information_Field_1').html(`${infoField1}KG`);
+    infoField2 && $('#Information_Field_2').html(`${infoField2}KG`);
+    parameter1 && $('#Parameter_1').html(parameter1);
+    parameter2 && $('#Parameter_2').html(parameter2);
+
+    if (currentIndex > images.length) {
+      return;
+    }
+
+    const Product_Main_Image = images[currentIndex];
+    const small_product = images[currentIndex + 1];
+    const Product_sideImage_A = images[currentIndex + 2];
+    const Product_sideImage_B = images[currentIndex + 3];
+    // 每行有四张图，如果没有配置够数量，会出现异常
+    Product_Main_Image && readImageFromMedia(Product_Main_Image, $('#Product_Main_Image'));
+    small_product && readImageFromMedia(small_product, $('#small_product'));
+    Product_sideImage_A && readImageFromMedia(Product_sideImage_A, $('#Product_sideImage_A'));
+    Product_sideImage_B && readImageFromMedia(Product_sideImage_B, $('#Product_sideImage_B'));
+    currentIndex = currentIndex + 4;
+
+    await exportImage(`${Title} ${Title_2}`);
+  }
+
+  function readImageFromMedia(image, node) {
+    uint8ArrayToImageBase64(image.buffer, `image/${image.extension || 'png'}`, node);
+  }
+
   // 监听上传excel，并解析excel为json
-  $excelInput.on('change', (event) => {
+  $csvInput.on('change', (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = function (event) {
+    reader.onload = (event) => {
       const arrayBuffer = event.target.result;
-
       const workbook = new ExcelJS.Workbook();
-      workbook.xlsx.load(arrayBuffer).then((data) => {
-        const images = data.media;
-        images.forEach((image, index) => {
-          index === 0 &&
-            uint8ArrayToImageBase64(image.buffer, `image/${image.extension || 'png'}`, $('#Product_Main_Image'));
-          index === 1 && uint8ArrayToImageBase64(image.buffer, `image/${image.extension || 'png'}`, $('#Side_Img'));
-        });
+      let currentIndex = 0;
 
-        workbook.eachSheet((worksheet, sheetId) => {
+      workbook.xlsx.load(arrayBuffer).then((data) => {
+        // 从文件原始内容读取图片信息
+        const images = data.media || [];
+
+        // 这里只会读取第一个sheet
+        workbook.eachSheet(async (worksheet, sheetId) => {
+          if (sheetId > 1) {
+            return;
+          }
+          const rows = [];
           // 遍历工作表中的所有行
-          worksheet.eachRow((row, rowNumber) => {
-            const [_, key, value] = row.values || [];
-            if (value?.error) {
-              return;
-            }
-            key === 'Title' && $('#Title').html(value);
-            key === 'Title_2' && $('#Title_2').html(value);
-            key === 'Subtitle' && $('#Subtitle').html(value);
-            key === 'infoField1' && $('#Information_Field_1').html(value);
-            key === 'infoField2' && $('#Information_Field_2').html(value);
-            key === 'parameter1' && $('#Parameter_1').html(value);
-            key === 'parameter2' && $('#Parameter_2').html(value);
-          });
+          worksheet.eachRow((row) => rows.push(row));
+          rows.reduce((sum, item) => {
+            return sum.then(() => readLine(item, images, currentIndex));
+          }, Promise.resolve());
         });
       });
     };
@@ -71,7 +117,7 @@ $(document).ready(() => {
 
     return domtoimage
       .toPng(node)
-      .then(function (dataUrl) {
+      .then((dataUrl) => {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
@@ -84,44 +130,10 @@ $(document).ready(() => {
         document.body.removeChild(img);
         $layout.css('top', (boxSize - size.height) / 2);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error('截图失败', error);
       });
   };
-
-  $csvInput.on('change', (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-      const content = event.target.result;
-      const lines = content.split('\n').map((line) => line.trim());
-      const segments = lines.map((line) => line.split('\t'));
-      const [columns, ...rows] = segments;
-
-      rows.reduce((sum, row, index) => {
-        return sum.then(() => {
-          return new Promise((resolve, reject) => {
-            $('#Title').html(row[0]);
-            $('#Title_2').html(row[1]);
-            $('#Subtitle').html(row[2]);
-            $('#Parameter_2').html(row[3]);
-            $('#Parameter_1').html(row[4]);
-            $('#small_product').attr('src', row[5]);
-            $('#Product_Main_Image').attr('src', row[6]);
-            $('#Information_Field_1').html(row[7]);
-            $('#Information_Field_2').html(row[8]);
-            $('#Product_sideImage_A').attr('src', row[9]);
-            $('#Product_sideImage_B').attr('src', row[10]);
-            // 给5s加载图片
-            setTimeout(() => resolve(exportImage(index)), 10000);
-          });
-        });
-      }, Promise.resolve());
-    };
-
-    reader.readAsText(file);
-  });
 
   // 文字处理区
   $('#title').on('input', (evt) => {
@@ -240,7 +252,7 @@ $(document).ready(() => {
 
     domtoimage
       .toPng(node)
-      .then(function (dataUrl) {
+      .then((dataUrl) => {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
@@ -253,7 +265,7 @@ $(document).ready(() => {
         document.body.removeChild(img);
         $layout.css('top', (boxSize - size.height) / 2);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error('截图失败', error);
       });
   });
