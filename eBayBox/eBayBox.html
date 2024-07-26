@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Product Information Form</title>
     <link href="./bootstrap.min.css" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
@@ -10,8 +11,8 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 class="mb-4">Product Information Form</h2>
-                <input type="file" id="input-excel" />
-                <a href="https://raw.githubusercontent.com/weisiwu/fe_demo/main/eBayBox/demo.xlsx">download Demo excel</a>
+                <input type="file" id="input-csv" />
+                <a href="https://raw.githubusercontent.com/weisiwu/fe_demo/main/eBayBox/sample.csv">Download Sample Csv File</a>
                 <form>
                     <div class="form-group">
                         <label for="title">Title</label>
@@ -81,7 +82,6 @@
                     <div style="position: relative; width: 600px; height: 600px; background-color: black; border-radius: 10px; line-height: 600px;">
                         <div id="layout">
                             <img id="bk" src="./bk.png" width="600" />
-                            <!-- <img id="bk" src="./bk2.png" width="600" /> -->
                             <div id="TitleBox">
                                 <p id="Title">Fiat Ducato-250 L4/XL</p>
                                 <p id="Title_2">Bus/Kasten Lange Von 6363mm</p>
@@ -119,6 +119,7 @@
     <script src="./dom-to-image.min.js"></script>
     <script src="./xlsx.full.min.js"></script>
     <script src="./exceljs.min.js"></script>
+    <script src="./jszip.min.js"></script>
     <script>
         $('.custom-file-input').on('change', function() {
             const fileName = $(this).val().split('\\').pop();
