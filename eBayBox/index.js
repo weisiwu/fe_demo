@@ -1,5 +1,51 @@
 /** @format */
 
+function getValueFromCss(cssstr = '') {
+  return cssstr.match(/([0-9]+)/g)[0];
+}
+
+function getTextWidth(text, style) {
+  return textMetrics.init(style).width(text);
+}
+
+// 动态调整文字大小
+function adjustNodeFontSize(node) {
+  if (!node) {
+    return;
+  }
+
+  const text = node.innerText || '';
+  const computedStyle = window.getComputedStyle(node) || {};
+  const {
+    width: rawWidth,
+    paddingLeft: rawPaddingLeft,
+    paddingRight: rawPaddingRight,
+    fontSize: rawFontSize,
+    fontFamily,
+    fontWeight,
+  } = computedStyle;
+  const width = getValueFromCss(rawWidth);
+  const paddingLeft = getValueFromCss(rawPaddingLeft) || 0;
+  const paddingRight = getValueFromCss(rawPaddingRight) || 0;
+  const fontSize = getValueFromCss(rawFontSize);
+  const useSpace = width - paddingLeft - paddingRight;
+  const step = 0.5;
+  let newFontSize = fontSize;
+
+  while (
+    getTextWidth(text, {
+      fontSize: `${newFontSize}px`,
+      fontFamily,
+      fontWeight,
+      width: useSpace,
+    }) >= useSpace &&
+    newFontSize >= 5
+  ) {
+    newFontSize -= step;
+  }
+  node.style['font-size'] = `${newFontSize}px`;
+}
+
 function uint8ArrayToImageBase64(uint8Array, mimeType, dom) {
   // 确保提供了正确的 MIME 类型
   const blob = new Blob([uint8Array], { type: mimeType });
@@ -269,4 +315,28 @@ $(document).ready(() => {
         console.error('截图失败', error);
       });
   });
+
+  const nodeList = [
+    $('#Title')[0],
+    $('#Title_2')[0],
+    $('#Subtitle')[0],
+    $('#Information_Field_1')[0],
+    $('#Information_Field_2')[0],
+  ];
+  const config = { childList: true, characterData: true, subtree: true };
+
+  for (let node of nodeList) {
+    if (!node) {
+      continue;
+    }
+    // 监听以下文字节点的内容变化，并动态调整文字大小
+    const observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        if (mutation.type === 'characterData' || mutation.type === 'childList') {
+          adjustNodeFontSize(node);
+        }
+      }
+    });
+    observer.observe(node, config);
+  }
 });
